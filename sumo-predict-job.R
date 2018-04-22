@@ -1,8 +1,7 @@
 start_time <- Sys.time()
-comments <- list()
 
-library(mlr)
-library(tidyverse)
+source("log.R")
+comments <- list()
 
 banzuke <- "banzuke" %>% 
 	list.files(pattern = "\\.csv", full.names = TRUE) %>% 
@@ -62,6 +61,8 @@ if (nrow(upcoming) > 0 && (!file.exists(predictions_fn) || hash(read_csv(predict
 		mutate_if(is.character, as.factor)
 	
 	if (nrow(predictions) > 0) {
+		library(mlr)
+		
 		model <- readRDS("~/sumo-predict-outcome/model/binomial.rds")
 	
 		predictions %>% 
@@ -102,5 +103,4 @@ if (nrow(upcoming) > 0 && (!file.exists(predictions_fn) || hash(read_csv(predict
 	}
 }
 
-source("log.R")
 write_log("sumo-predict", comments)

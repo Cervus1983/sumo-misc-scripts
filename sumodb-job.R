@@ -1,4 +1,6 @@
 start_time <- Sys.time()
+
+source("log.R")
 comments <- list()
 
 source("../sumodb/sumodb.R")
@@ -44,5 +46,4 @@ if (
 	}
 }
 
-source("log.R")
 write_log("sumodb", comments)
