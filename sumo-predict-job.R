@@ -11,7 +11,8 @@ banzuke <- "banzuke" %>%
 results <- "results" %>% 
 	list.files(pattern = "\\.csv", full.names = TRUE) %>% 
 	lapply(read_csv) %>% 
-	do.call(rbind, .)
+	do.call(rbind, .) %>% 
+	mutate_at(vars(ends_with("_win")), as.integer)
 
 upcoming <- results %>% 
 	filter(basho == max(basho)) %>% 

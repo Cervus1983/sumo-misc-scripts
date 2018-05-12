@@ -12,8 +12,6 @@ if (!file.exists(lock_fn)) {
 	odds_fn <- "odds/marathonbet-now.csv"
 	predictions_fn <- "sumo-predict.csv"
 	
-	
-	
 	if (file.exists(predictions_fn) && last_run("sumo-alert") < file.mtime(odds_fn)) {
 		odds <- read_csv(odds_fn)
 		
